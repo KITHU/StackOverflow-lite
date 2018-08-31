@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Stack OverFlow</title>
+    <link rel ="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="login-page">
+        <div class="form">
+            <form class="register-form">
+                <p><h3><b>SIGN UP</b></h3></p>
+                <input type="text" required placeholder="user name" autofocus/>
+                <input type="email" required placeholder="somebody@something.com"/>
+                <input type="password" required placeholder="password">
+                <button>Sign up</button>
+                <p class="message">Already Registered? <a href="#">Login</a></p>
+            </form>
+
+            <form class="login-form">
+                <div class="imgcontainer">
+                    <img src="https://png.icons8.com/color/96/000000/user.png" alt="Avatar" class="avatar">
+                </div>
+                <input type="email" required placeholder="somebody@something.com" autofocus/>
+                <input type="password" required placeholder="password"/>
+                <button >Login</button>
+                <p class="message">Not Registeres? <a href="#">Create an Account</a></p>
+            </form>
+        </div>
+    </div>
+    <script src='https://code.jquery.com/jquery-3.3.1.min.js'></script>
+    <script>
+        $('.message a').click(function(){
+            $('form').animate({height: "toggle", opacity: "toggle"})
+        });
+    </script>
+    
+</body>
+</html>
