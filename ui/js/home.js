@@ -1,14 +1,14 @@
-let alluestions =() => {
+let allQuestions =() => {
     token = localStorage.getItem('token')
     
-    currentoken = "Bearer " + token
-    fetch('http://127.0.0.1:5000/api/v1/questions', {
+    currentToken = "Bearer " + token
+    fetch('https://stackoverflow-lite-apiv1.herokuapp.com/api/v1/questions', {
 
         method: 'GET',
         
         headers: {
             'Content-Type': 'application/json;charset=UTF-8',
-            'Authorization':currentoken
+            'Authorization':currentToken
         }
     }).then(response => response.json())
     .then(data => {
@@ -16,20 +16,19 @@ let alluestions =() => {
             localStorage.clear()
             window.location.replace("index.html");
         }
-        let all_questions = data.All_Questions;
+        let allQuestions = data.All_Questions;
         let questions = '';
-        for(let counter = 0; counter< all_questions.length; counter++){
-            
-            let q_id = all_questions[counter]["question_id"];
-            let title = all_questions[counter]["title"];
-            let description = all_questions[counter]["description"];
-            let date = all_questions[counter]["date posted"];
+        for(let counter = 0; counter< allQuestions.length; counter++){
+            let questionId = allQuestions[counter]["question_id"];
+            let title = allQuestions[counter]["title"];
+            let description = allQuestions[counter]["description"];
+            let date = allQuestions[counter]["date posted"];
 
             let datearray = date.split(".")[0]
             let datepart=datearray.split(" ")[0]
             let timepart = datearray.split(" ")[1] 
 
-            questions += `<p><h2><a onclick="setSingleQuestionId(${q_id})">${title}</a></h2></p>
+            questions += `<p><h2><a onclick="setSingleQuestionId(${questionId})">${title}</a></h2></p>
                     <p><b><i>  ${description}</i></b></p>
                     <p> <span>posted on:</span>
                        ${datepart}
@@ -51,30 +50,30 @@ let alluestions =() => {
 //
 
 let setSingleQuestionId=(id)=>{
-    localStorage.setItem("question_id",id);
+    localStorage.setItem("questionId",id);
     window.location.replace("./answerq.html");
 } 
 
 // ---------------------------------------------------------------------------------------------------------
-//
+// get single question an all answers available
 
-let qetSingleQuestion =()=>{
-    let id = localStorage.getItem("question_id");
+let getSingleQuestion =()=>{
+    let id = localStorage.getItem("questionId");
     if (id === null){
         return window.location.replace("./home.html");
     }
 
-    let url='http://127.0.0.1:5000/api/v1/questions/'+id;
+    let url='https://stackoverflow-lite-apiv1.herokuapp.com/api/v1/questions/'+id;
     token = localStorage.getItem('token')
     
-    currentoken = "Bearer " + token
+    currentToken = "Bearer " + token
     fetch(url, {
 
         method: 'GET',
         
         headers: {
             'Content-Type': 'application/json;charset=UTF-8',
-            'Authorization':currentoken
+            'Authorization':currentToken
         }
     }).then(response => response.json())
     .then(data => {
@@ -88,29 +87,117 @@ let qetSingleQuestion =()=>{
                 <h3><b>${data.question["title"]}</b></h3>
                 <p>${data.question["description"]}</p>
             `
-            document.getElementById("qst_part").innerHTML=question
+            document.getElementById("qnPart").innerHTML=question
         }
         let answers = "";
         if (data.answers){
              data.answers.forEach(element => {
-                console.log(element['answer'])
-                console.log(element['answer_id'])
-                console.log(element['preffered'])
-                console.log(element['up_vote'])
-                console.log(element['down_vote'])
-
                 answers +=`
                 <p><i>${element['answer']}</i></p>
             `
             });
-            document.getElementById("ans_to_qst").innerHTML=answers
-           
+            document.getElementById("answerToQuestion").innerHTML=answers
         }
     }).catch((error) => {
         console.log("there was an error ",error)
     });
-
-
-
 }
+
+//-----------------------------------------------------------------------------------------------------
+//post an answer
+
+const postAnswer = () => {
+    const answer = document.getElementById('answer').value;
+    let id = localStorage.getItem("questionId");
+    if (id === null){
+        return window.location.replace("./home.html");
+    }
+    const url = 'https://stackoverflow-lite-apiv1.herokuapp.com/api/v1/questions/'+id+'/answers';
+    token = localStorage.getItem('token');
+    currentToken = "Bearer " + token
+  
+    const data = {
+      answer:answer
+    };
+  
+  
+    fetch(url, {
+      method: 'POST', // post method
+  
+      body: JSON.stringify(data), // data can be `string` or {object}!
+  
+      headers: {
+        'Content-Type': 'application/json;charset=UTF-8',
+        'Authorization':currentToken
+      },
+    }).then(response => response.json())
+  
+      .then((data) => {
+        if (data.message==="Your answer was posted successfully") {
+            window.location.reload();
+        } 
+        if(data.message){
+            console.log(data.message)
+        }
+        
+      }).catch((error) => {
+        console.log('there was an error ', error);
+      });
+  };
+// ---------------------------------------------------------------------------------------------------
+//  navigator to askquestion page
+
+const goToAskaQuestion = () =>{
+    window.location.replace("askquestion.html")
+    return false;
+}
+
+// ---------------------------------------------------------------------------------------------------
+// post a question
+
+const postQuestion = () => {
+    let title = document.getElementById('topic').value;
+    let description = document.getElementById('subject').value;
+    let id = localStorage.getItem("questionId");
+    if (id === null){
+        return window.location.replace("./home.html");
+    }
+    const url = 'https://stackoverflow-lite-apiv1.herokuapp.com/api/v1/questions';
+    token = localStorage.getItem('token');
+    currentToken = "Bearer " + token
+  
+    const data = {
+      title:title,
+      description:description
+    };
+  
+  
+    fetch(url, {
+      method: 'POST', // post method
+  
+      body: JSON.stringify(data), // data can be `string` or {object}!
+  
+      headers: {
+        'Content-Type': 'application/json;charset=UTF-8',
+        'Authorization':currentToken
+      },
+    }).then(response => response.json())
+  
+      .then((data) => {
+        if (data.message==="Question created successfully") {
+            window.location.replace("home.html");
+        } 
+        if(data.message){
+            console.log(data.message)
+        }
+        if(data.error){
+            console.log(data.error)
+        }
+        
+      }).catch((error) => {
+        console.log('there was an error ', error);
+      });
+  };
+
+  
 
