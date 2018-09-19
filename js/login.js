@@ -21,16 +21,16 @@ const signup = () => {
     },
   }).then(response => response.json())
 
-    .then((data) => {
-      if (data.message === 'Account created') {
+    .then((res) => {
+      if (res.message === 'Account created') {
         window.location.reload();
       }
-      if (data.message) {
-        showAlert(data.message);
+      if (res.message) {
+        showAlert(res.message);
       }
 
-      if (data.error) {
-        showAlert(data.error);
+      if (res.error) {
+        showAlert(res.error);
       }
     }).catch((error) => {
       showAlert('there was an error ', error);
@@ -47,7 +47,6 @@ const login = () => {
     email,
     password,
   };
-  console.log(data);
 
   fetch(url, {
     method: 'POST', // post method
@@ -59,19 +58,19 @@ const login = () => {
     },
   }).then(response => response.json())
 
-    .then((data) => {
-      if (data.error) {
-        showAlert(data.error);
+    .then((res) => {
+      if (res.error) {
+        showAlert(res.error);
       }
 
-      if (data.message === 'login successful') {
+      if (res.message === 'login successful') {
         localStorage.clear();
-        localStorage.setItem('token', data.access_token);
-        localStorage.setItem('user', data.username);
+        localStorage.setItem('token', res.access_token);
+        localStorage.setItem('user', res.username);
         window.location.replace('./home.html');
       }
     }).catch((error) => {
-      showAlert('There was an error',error);
+      showAlert('There was an error', error);
     });
 };
 // logout function

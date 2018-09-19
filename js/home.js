@@ -17,8 +17,9 @@ let allQuestions =() => {
             window.location.replace("index.html");
         }
         let allQuestions = data.All_Questions;
+        console.log(allQuestions);
         let questions = '';
-        for(let counter = 0; counter< allQuestions.length; counter++){
+        for(let counter = (allQuestions.length)-1; counter>=0; counter--){
             let questionId = allQuestions[counter]["question_id"];
             let title = allQuestions[counter]["title"];
             let description = allQuestions[counter]["description"];
