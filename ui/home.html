@@ -7,9 +7,8 @@
     <title>Stack OverFlow</title>
     <link rel ="stylesheet" href="style.css">
 </head>
-<body>
+<body onload="allQuestions()">
         <header>
-                <!-- <div class="Container"> -->
                     <div id="branding">
                         <h1>Stack OverFlow Lite</h1>
                     </div>
@@ -20,41 +19,12 @@
                                 <li><a href="index.html" onclick="logout()">log out</a></li>
                             </ul>
                         </nav>
-                <!-- </div> -->
         </header>
     <div class="container">
         <div id="questionDisplay">
-            <table>
-                <tr>
-                    <td>
-                            <p>0 votes </p>
-                            <p><a href="#answers">5</a> answers</p> 
-                    </td>
-                    <td>
-                            <p><a href="answerq.html">Data Structures Manupulation</a></p>
-                            <p>
-                                Posted on 29/08/2018 | By <a href="#user-profile">Kithu</a>
-                            </p>
-                    </td>
-                </tr>
-            </table>
-
-            <table>
-                    <tr>
-                        <td>
-                                <p>0 votes </p>
-                                <p><a href="#answers">5</a> answers</p> 
-                        </td>
-                        <td>
-                                <p><a href="answerq.html">Data Structures Manupulation</a></p>
-                                <p>
-                                    Posted on 29/08/2018 | By <a href="#user-profile">Kithu</a>
-                                </p>
-                        </td>
-                    </tr>
-                </table>
         </div>
     </div>
-
+<script src="js/index.js"></script>
+<script src="js/home.js"></script>
 </body>
 </html>
