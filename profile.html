@@ -1,45 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Stack OverFlow</title>
-    <link rel ="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css">
 </head>
-<body onload="userQuestions()">
-        <header>
-                <!-- <div class="Container"> -->
-                    <div id="branding">
-                        <h1>Stack OverFlow Lite</h1>
-                    </div>
-                        <nav>
-                            <ul>
-                                <li><a href="home.html">Home</a></li>
-                                <li><a href="profile.html">Profile</a></li>
-                                <li><a href="index.html" onclick="logout()">log out</a></li>
-                            </ul>
-                        </nav>
-                <!-- </div> -->
-        </header>
-    <div class="profile">
-    <div class="questionvotes">
-       <p><b>Questions</b> <i id="userQnCount"></i></p>
-       <hr>
-       <p><b>Answers<b> <i>3</i></p>
-       <hr>
-       <p><h4 onclick="loadRecent()">Recent Questions</h4></p>
-       <hr>
-       <p><h4 onclick="loadMostAnswered()">Questions With Most Answers</h4></p>
-    
 
-    
-    </div>
-    <div id="questionsdashboard">
-        
-    </div>
-    
-<!-- <script src="questions.js"></script> -->
-<script src="js/profile.js"></script>
+<body onload="userQuestions()">
+    <header>
+        <!-- <div class="Container"> -->
+        <div id="branding">
+            <h1>Stack OverFlow Lite</h1>
+        </div>
+        <nav>
+            <ul>
+                <li>
+                    <a href="home.html">Home</a>
+                </li>
+                <li>
+                    <a href="profile.html">Profile</a>
+                </li>
+                <li>
+                    <a href="index.html" onclick="logout()">log out</a>
+                </li>
+            </ul>
+        </nav>
+        <!-- </div> -->
+    </header>
+    <div class="profile">
+        <div class="questionvotes">
+            <p>
+                <b>Questions</b>
+                <i id="userQnCount"></i>
+            </p>
+            <hr>
+            <p>
+                <b>Answers
+                    <b>
+                        <i>3</i>
+            </p>
+            <hr>
+            <p>
+                <h4 onclick="loadRecent()">Recent Questions</h4>
+            </p>
+            <hr>
+            <p>
+                <h4 onclick="loadMostAnswered()">Questions With Most Answers</h4>
+            </p>
+
+
+
+        </div>
+        <div id="questionsdashboard">
+
+        </div>
+
+        <!-- <script src="questions.js"></script> -->
+        <script src="js/profile.js"></script>
+        <script src="js/index.js"></script>
 </body>
+
 </html>
