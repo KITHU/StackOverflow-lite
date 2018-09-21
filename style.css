@@ -265,3 +265,7 @@ a {
   background: red;
   display: none;
 }
+#loadrecent {
+  cursor: pointer;
+  color: rgb(0, 110, 255);
+}
