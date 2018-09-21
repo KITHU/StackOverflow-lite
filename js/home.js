@@ -18,7 +18,6 @@ const allUserQuestions = () => {
         window.location.replace("index.html");
       }
       let allQuestions = data.All_Questions;
-      console.log(allQuestions);
       let questions = "";
       for (let counter = allQuestions.length - 1; counter >= 0; counter--) {
         let questionId = allQuestions[counter]["question_id"];
@@ -136,14 +135,16 @@ let getSingleQuestion = () => {
                 onclick="modifyAnswer(${element["answer_id"]},
                 '${element["answer"]}')">edit</a>
                 <span>&#128077:${element["up_vote"]}</span>
-                <span>&#x1F44E:${element["down_vote"]}</span></center>
+                <span>&#x1F44E:${element["down_vote"]}</span>
+                <span>Preffered:${element["preffered"]}</span></center>
                 </p>
                 <div id="modifyAnswer">
                 <div id="alert-msg" class="alert"></div>
                 <textarea id="answer1" name="subject" placeholder="Type your answer here.." style="height:150px"></textarea>
                 </textarea>
                 <button type="button" onclick="editAnswer()">Edit</button>
-                <button type="button" onclick="modifyAnswer()">Accept</button>
+                <button type="button" onclick="acceptAnswer()">Accept</button>
+                <button type="button" onclick="cancel()">Cancel</button>
                 </div>
 
             `;
@@ -216,9 +217,7 @@ const postQuestion = () => {
   let title = document.getElementById("topic").value;
   let description = document.getElementById("subject").value;
   let id = localStorage.getItem("questionId");
-  if (id === null) {
-    return window.location.replace("./home.html");
-  }
+
   const url = "https://stackoverflow-lite-apiv1.herokuapp.com/api/v1/questions";
   token = localStorage.getItem("token");
   currentToken = "Bearer " + token;
@@ -227,7 +226,7 @@ const postQuestion = () => {
     title: title,
     description: description
   };
-
+  console.log(data);
   fetch(url, {
     method: "POST", // post method
 
@@ -271,7 +270,45 @@ const editAnswer = () => {
 
   const url = `https://stackoverflow-lite-apiv1.herokuapp.com/api/v1/questions/${qnId}/answers/${ansId}`;
   const data = {
-    answer: modified,
+    answer: modified
+  };
+
+  fetch(url, {
+    method: "PUT", // post method
+
+    body: JSON.stringify(data), // data can be `string` or {object}!
+
+    headers: {
+      "Content-Type": "application/json;charset=UTF-8",
+      Authorization: currentToken
+    }
+  })
+    .then(response => response.json())
+
+    .then(data => {
+      if (data.message === "answer updated sucessfully") {
+        window.location.reload();
+      }
+      if (data.message) {
+        showAlert(data.message);
+      }
+      if (data.error) {
+        showAlert(data.error);
+      }
+    })
+    .catch(error => {
+      console.log("there was an error ", error);
+    });
+};
+
+const acceptAnswer = () => {
+  ansId = localStorage.getItem("ansId");
+  qnId = localStorage.getItem("questionId");
+  let token = localStorage.getItem("token");
+  let currentToken = "Bearer " + token;
+
+  const url = `https://stackoverflow-lite-apiv1.herokuapp.com/api/v1/questions/${qnId}/answers/${ansId}`;
+  const data = {
     preffered: "True"
   };
 
@@ -301,6 +338,4 @@ const editAnswer = () => {
     .catch(error => {
       console.log("there was an error ", error);
     });
-
-  console.log(modified);
 };

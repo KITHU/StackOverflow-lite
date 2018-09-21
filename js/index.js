@@ -15,3 +15,7 @@ const signedIn = () => {
     window.location.replace("index.html");
   }
 };
+
+const cancel = () => {
+  window.location.reload();
+};
