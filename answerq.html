@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Stack OverFlow</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body onload="getSingleQuestion()">
+    <header>
+        <!-- <div class="Container"> -->
+        <div id="branding">
+            <h1>Stack OverFlow Lite</h1>
+        </div>
+        <nav>
+            <ul>
+                <li>
+                    <a href="home.html">Home</a>
+                </li>
+                <li>
+                    <a href="profile.html">Profile</a>
+                </li>
+                <li>
+                    <a href="index.html" onclick="logout()">log out</a>
+                </li>
+            </ul>
+        </nav>
+        <!-- </div> -->
+    </header>
+    <div class="container">
+
+        <h2>Question</h2>
+        <hr>
+        <div id="ans_question">
+            <button class="button" type="button" onclick="goToAskaQuestion()">ask question</button>
+            <div id="qnPart"></div>
+        </div>
+        <h3>Answers To The Above Question</h3>
+        <hr>
+        <div id="answerToQuestion">
+
+        </div>
+
+        <h3>Your Answer</h3>
+        <hr>
+        <div id="entryDisplay">
+            <div id="alert-msg" class="alert"></div>
+            <textarea id="answer" name="subject" placeholder="Type your answer here.." style="height:150px"></textarea>
+            </textarea>
+            <button type="button" onclick="postAnswer()">Post Your Answer</button>
+        </div>
+
+
+
+    </div>
+    <!-- <script src="modify.js"></script> -->
+    <script src="js/home.js"></script>
+    <script src="js/index.js"></script>
+
+</body>
+
+</html>

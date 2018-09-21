@@ -1,0 +1,267 @@
+body {
+  background-color: #e6e6fa;
+  margin: 0;
+  padding: 0;
+}
+/* nav styling*/
+nav {
+  margin: 0;
+  padding: 0;
+  color: rgba(233, 219, 20, 0.856);
+  background: #fff;
+  width: 100%;
+}
+/* style header elements in the menu bar */
+header {
+  background: #35424a;
+  padding-top: 10px;
+  min-height: 40px;
+  border-bottom: hsl(20, 1%, 41%) 3px solid;
+}
+header nav ul li a {
+  color: #ffffff;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-size: 16px;
+}
+header nav ul {
+  margin: 0;
+  padding: 0;
+  float: right;
+  margin-top: 10px;
+}
+header nav ul li {
+  display: inline;
+  padding: 0 20px 0 20px;
+}
+header #branding {
+  float: left;
+}
+header #branding h1 {
+  margin: 0;
+  color: #1de8de;
+}
+.imgcontainer {
+  text-align: center;
+  margin: 1px 0 12px 0;
+  position: relative;
+}
+
+img.avatar {
+  width: 40%;
+  border-radius: 50%;
+}
+
+.login-page {
+  width: 360px;
+  padding: 10% 0 0;
+  margin: auto;
+}
+.form {
+  position: relative;
+  z-index: 1;
+  background: #ffff;
+  max-width: 360px;
+  margin: 0 auto 100px;
+  padding: 45px;
+  text-align: center;
+}
+.form input {
+  font-family: "Roboto", sans-serif;
+  outline: 1;
+  background: #f2f2f2;
+  width: 100%;
+  border: 0;
+  margin: 0 0 15px;
+  padding: 15px;
+  box-sizing: border-box;
+  font-size: 14px;
+}
+.form button {
+  font-family: "Calibri", sans-serif;
+  text-transform: uppercase;
+  outline: 0;
+  background: #3165a1;
+  width: 100%;
+  border: 0;
+  padding: 15px;
+  color: #ffff;
+  font-size: 14px;
+  cursor: pointer;
+}
+.form button:hover,
+.form button :active {
+  background: #4caf50;
+}
+.form .message {
+  font-size: 12px;
+  margin: 15px 0 0;
+}
+.form .message a {
+  color: #4caf50;
+  text-decoration: none;
+}
+.form .register-form {
+  display: none;
+}
+.container {
+  margin: auto;
+  width: 80%;
+  background-color: #ffff;
+  overflow: hidden;
+  /* background-color: royalblue; */
+}
+.container h2,
+.container h3 {
+  margin: 4px;
+  padding: 5px;
+  font-weight: bold;
+  color: #1de8de;
+}
+.container p {
+  padding: 5px 15px;
+  margin: 4px;
+  font-family: "Times New Roman", sans-serif;
+  font-size: 18px;
+  font-style: italic;
+  color: black;
+  background-color: #f2f2f2;
+}
+.container button {
+  background-color: #3165a1;
+  margin: 20px;
+  padding: 10px;
+  font-size: 20px;
+}
+.container button:hover,
+.container button :active {
+  background: #4caf50;
+}
+.questionDisplay {
+  margin: 10px;
+  border-radius: 5px;
+  background: rgba(0, 0, 0, 0.6);
+  padding: 20px;
+}
+.profile {
+  margin: auto;
+  width: 80%;
+  overflow: hidden;
+}
+#questionsdashboard {
+  width: 72%;
+  padding: 5px 2%;
+  background-color: #c6e5fa;
+  float: left;
+}
+.questionvotes {
+  width: 20%;
+  float: right;
+  padding: 5px 2%;
+  /* background-color: violet; */
+}
+#entryDisplay {
+  margin: 10px;
+  border-radius: 5px;
+  background: rgba(0, 0, 0, 0.6);
+  padding: 20px;
+}
+#entryDisplay input[type="text"],
+textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin-top: 6px;
+  margin-bottom: 16px;
+  resize: vertical;
+}
+/* textarea{
+    
+    color:black;
+    width: 90%;
+    margin: 5px 20px;
+    box-sizing: border-box;
+    padding: 5px 20px;
+    font-size: 18px;
+} */
+#ans_question {
+  width: 100%;
+}
+a {
+  text-decoration: none;
+}
+
+.alert {
+  border-radius: 5px;
+  padding: 10px 20px;
+  width: 90%;
+  background-color: #333377;
+  color: white;
+  text-align: center;
+  margin: 0 auto;
+  display: none;
+}
+.alert-error {
+  background-color: #a22222;
+}
+.alert-ok {
+  background-color: #005000;
+}
+
+#questionDisplay span {
+  color: blue;
+}
+#questionDisplay p {
+  text-indent: 10px;
+  text-align: justify;
+  letter-spacing: 3px;
+  background-color: transparent;
+}
+#questionDisplay a {
+  color: #35424a;
+}
+#questionDisplay a:hover {
+  color: rgb(0, 255, 255);
+  cursor: pointer;
+}
+#questionDisplay a:visited {
+  color: red;
+}
+#qst_part p {
+  text-indent: 10px;
+  text-align: justify;
+  letter-spacing: 3px;
+  background-color: transparent;
+}
+#qst_part h3 {
+  text-indent: 10px;
+  color: #35424a;
+}
+#qst_part .button {
+  margin: 0;
+  padding: 0;
+  border-radius: 25%;
+}
+.button {
+  float: right;
+  border-radius: 18%;
+  padding: 0px;
+  margin: 0px;
+}
+#modifyAnswer {
+  display: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  width: 90%;
+  background-color: #333377;
+  color: red;
+  text-align: center;
+  margin: 0 auto;
+}
+#delete {
+  color: red;
+  background: red;
+  display: none;
+}
