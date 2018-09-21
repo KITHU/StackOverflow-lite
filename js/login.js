@@ -69,6 +69,7 @@ const login = () => {
       if (res.message === "login successful") {
         localStorage.clear();
         localStorage.setItem("token", res.access_token);
+        localStorage.setItem("userId",res.userid)
         localStorage.setItem("user", res.username);
         window.location.replace("./home.html");
       }

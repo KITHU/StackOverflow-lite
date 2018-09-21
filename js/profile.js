@@ -1,5 +1,6 @@
 const userQuestions = () => {
   signedIn();
+  loadMostAnswered();
   const token = localStorage.getItem("token");
   currentToken = `Bearer ${token}`;
   fetch(
@@ -95,5 +96,41 @@ let deleteQuestion = id => {
 };
 
 let loadMostAnswered = () => {
-  document.getElementById("questionsdashboard").innerHTML = "coming soon!";
+  signedIn();
+  const token = localStorage.getItem("token");
+  currentToken = `Bearer ${token}`;
+  fetch(
+    "https://stackoverflow-lite-apiv1.herokuapp.com/api/v1/questions/useranswers",
+    {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json;charset=UTF-8",
+        Authorization: currentToken
+      }
+    }
+  )
+    .then(response => response.json())
+    .then(data => {
+      document.getElementById("userAnsCount").innerHTML = data.total_answers;
+      useranswers = "";
+      console.log(data);
+      if (data.user_answers.length > 0) {
+        for (
+          let counter = data.user_answers.length - 1;
+          counter >= 0;
+          counter--
+        ) {
+          let useranswer = data.user_answers[counter]["answer"];
+          useranswers += `<p><ul><li>${useranswer}</li></ul></p>
+                         <hr>`;
+        }
+        document.getElementById("questionsdashboard").innerHTML = useranswers;
+      } else {
+        document.getElementById("questionsdashboard").innerHTML =
+          "No answers to display";
+      }
+    })
+    .catch(error => {
+      console.log("There was an error ", error);
+    });
 };
